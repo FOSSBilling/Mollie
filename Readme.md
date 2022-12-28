@@ -7,5 +7,7 @@ Clone repo in
 /src/libary/Payment/Adapter/
 ```
 
-Activate it via Settings 
+Then composer install and make sure to enter "n" 
+
+Activate it via Settings and provide the correct settings
 

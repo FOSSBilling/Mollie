@@ -83,14 +83,11 @@ public function getHtml($api_admin, $invoice_id, $subscription)
     $api_key = $this->config['api_key'];
     $payGatewayService = $this->di['mod_service']('Invoice', 'PayGateway');
     $payGateway = $this->di['db']->findOne('PayGateway', 'gateway = "Mollie"');
-
+    
     $mollie = new \Mollie\Api\MollieApiClient();
     $mollie->setApiKey($api_key);
-
-    error_log(number_format($invoiceService->getTotalWithTax($invoiceModel),2));
-    error_log($invoiceModel->currency);
-    error_log( $this->getInvoiceTitle($invoiceModel));
-    error_log($api_key);
+    
+    $uniqid = bin2hex(random_bytes(10));
     $payment = $mollie->payments->create([
         "amount" => [
             "currency" => $invoiceModel->currency,
@@ -98,13 +95,14 @@ public function getHtml($api_admin, $invoice_id, $subscription)
         ],
         "description" => $this->getInvoiceTitle($invoiceModel),
         "redirectUrl" => $this->config['thankyou_url'],
-        "webhookUrl"  => $this->config['notify_url']
+        "webhookUrl"  => $this->config['notify_url'].'&transid='.$uniqid
     ]);
 
     $payment_id = $payment->id;
-
-
-
+    
+    $tx = new Payment_Transaction(array('id' => $uniqid, ));
+    
+    
     return '<a href="'.$payment->getCheckoutUrl().'">Pay now!</a>';
 
 
