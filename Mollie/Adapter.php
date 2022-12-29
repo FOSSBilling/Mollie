@@ -97,15 +97,37 @@ public function getHtml($api_admin, $invoice_id, $subscription)
         "redirectUrl" => $this->config['thankyou_url'],
         "webhookUrl"  => $this->config['notify_url'].'&transid='.$uniqid
     ]);
-
     $payment_id = $payment->id;
     
-    $tx = new Payment_Transaction(array('id' => $uniqid, ));
+    $service = $this -> di['mod_service']('invoice', 'transaction');
+    // create a new transaction so we can reuse the payment id in the next step
+    $output = $service->create(array('txn_id' => $payment->id, 'bb_invoice_id' => $invoice_id, 'bb_gateway_id' => $payGateway -> id));
     
+    // We still need to update the unique id 
+    $tx = $this->di['db']->getExistingModelById('Transaction', $output);
+    $tx -> txn_status = 'pending';
+    $tx -> amount = $invoiceService->getTotalWithTax($invoiceModel);
+    $tx -> currency = $invoiceModel->currency;
+    $tx -> s_id = $uniqid;
+    $this->di['db']->store($tx);
     
     return '<a href="'.$payment->getCheckoutUrl().'">Pay now!</a>';
+}
 
-
+public function processTransaction($api_admin, $id, $data, $gateway_id){
+    $api_key = $this->config['api_key'];
+    $transid = $this->di['db']->getCell('SELECT id from transaction WHERE s_id = :s_id', array(':s_id' => $data['get']['transid']));
+    $tx = $this->di['db']->getExistingModelById('Transaction', $transid);
+    
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey($api_key);
+    $payment = $mollie->payments->get($tx->txn_id);
+    if ($payment->isPaid())
+    {
+        error_log('Paid');   
+    }else{
+        error_log('Failed');
+    }
 }
 
 public function getInvoiceTitle(\Model_Invoice $invoice)
