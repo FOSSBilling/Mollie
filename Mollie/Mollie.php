@@ -13,7 +13,7 @@
  */
 require_once __DIR__ . "/vendor/autoload.php";
 
-class Payment_Adapter_Mollie_Adapter extends Payment_AdapterAbstract implements \Box\InjectionAwareInterface
+class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \Box\InjectionAwareInterface
 {
 
     /**
@@ -118,15 +118,32 @@ public function processTransaction($api_admin, $id, $data, $gateway_id){
     $api_key = $this->config['api_key'];
     $transid = $this->di['db']->getCell('SELECT id from transaction WHERE s_id = :s_id', array(':s_id' => $data['get']['transid']));
     $tx = $this->di['db']->getExistingModelById('Transaction', $transid);
+    $invoice = $this->di['db']->getExistingModelById('Invoice', $tx->invoice_id);
+    $invoiceService = $this->di['mod_service']('Invoice');
     
     $mollie = new \Mollie\Api\MollieApiClient();
     $mollie->setApiKey($api_key);
     $payment = $mollie->payments->get($tx->txn_id);
+    
+    if($tx->status == 'processed'){
+        throw new \Exception("Transaction is allready processed");
+    }
     if ($payment->isPaid())
     {
-        error_log('Paid');   
+        $client = $this->di['db']->getExistingModelById('Client', $invoice->client_id);
+        $clientService = $this->di['mod_service']('client');
+        $tx->txn_status = 'appproved';
+        $tx->status = 'processed';
+        $tx->updated_at = date('Y-m-d H:i:s');
+        $this->di['db']->store($tx);
+        $clientService->addFunds($client, $tx->amount, 'Payment with Mollie', array('status' => 'appproved', 'invoice' => $tx->invoice_id));
+        if ($tx->invoice_id) {
+            $invoiceService->payInvoiceWithCredits($invoice);
+        }
+        $invoiceService->doBatchPayWithCredits(array('client_id' => $client->id));
+           
     }else{
-        error_log('Failed');
+        echo "Unable to process transaction";
     }
 }
 
