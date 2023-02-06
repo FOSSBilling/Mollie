@@ -1,6 +1,6 @@
 # Mollie Payment adapter for Fossbilling
 
-Currently not ready for use!
+Before use please test everything is working accordingly!
 
 Clone repo in 
 ```
