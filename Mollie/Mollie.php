@@ -56,6 +56,11 @@ public static function getConfig(){
         'supports_one_time_payments'   =>  true,
         'supports_subscriptions'     =>  false,
         'description'     =>  'Process payments via Mollie',
+        'logo' => array(
+            'logo' => '/Mollie/Mollie.png',
+            'height' => '50px;',
+            'width' => '50px',
+        ),
         'form'  => array(
             'api_key' => array('text', array(
                         'label' => 'Api key',
