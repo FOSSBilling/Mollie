@@ -2,16 +2,16 @@ name: Build and Test
 
 on:
   push:
-    branches: main
+    branches: [main]
   pull_request:
-    branches: main
+    branches: [main]
 
 jobs:
   composer:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: [ 8.0 ]
+        php: [8.2]
 
     name: PHP ${{ matrix.php }} - Build and Archive
     steps:
@@ -50,12 +50,12 @@ jobs:
 
   phpstan:
     runs-on: ubuntu-latest
-    needs: [ composer ]
+    needs: [composer]
     strategy:
       matrix:
-        php: [ 8.0 ]
+        php: [8.2]
 
-    name: PHPStan
+    name: PHPStan - FOSSBilling Preview
     steps:
       - uses: actions/download-artifact@v3
         with:
@@ -64,6 +64,23 @@ jobs:
 
       - name: Extract build archive
         run: tar -xvf /tmp/builds/build.tar ./
+
+      - name: Checkout FOSSBilling Source Code
+        uses: actions/checkout@v2
+        with:
+          repository: "FOSSBilling/FOSSBilling"
+          path: "FOSSBilling"
+
+      # We manually run composer commands because of this issue: https://github.com/php-actions/composer/issues/100
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer
+
+      - name: Install Composer Dependencies
+        run: composer install --no-progress --no-dev --no-interaction
+        working-directory: FOSSBilling
 
       - name: Run PHPStan
         uses: php-actions/phpstan@v3
