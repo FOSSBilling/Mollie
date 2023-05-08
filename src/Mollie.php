@@ -124,7 +124,7 @@ class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \Box\Inj
         $tx->s_id = $uniqid;
         $this->di['db']->store($tx);
 
-        return '<a href="' . $payment->getCheckoutUrl() . '">Pay now</a>';
+        return '<script type="text/javascript">window.location = "'. $payment->getCheckoutUrl() . '";</script>';
     }
 
     public function processTransaction($api_admin, $id, $data, $gateway_id): void
