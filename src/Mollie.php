@@ -9,16 +9,16 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
-class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \FOSSBilling\InjectionAwareInterface
+class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \Box\InjectionAwareInterface
 {
-    protected ?\Pimple\Container $di;
+    protected $di;
 
-    public function setDi(\Pimple\Container $di): void
+    public function setDi($di)
     {
         $this->di = $di;
     }
 
-    public function getDi(): ?\Pimple\Container
+    public function getDi()
     {
         return $this->di;
     }
