@@ -144,12 +144,12 @@ class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \Box\Inj
             $client = $this->di['db']->getExistingModelById('Client', $invoice->client_id);
             $clientService = $this->di['mod_service']('client');
             
-            $tx->txn_status = 'appproved';
+            $tx->txn_status = 'approved';
             $tx->status = 'processed';
             $tx->updated_at = date('Y-m-d H:i:s');
             $this->di['db']->store($tx);
             
-            $clientService->addFunds($client, $tx->amount, 'Payment with Mollie', array('status' => 'appproved', 'invoice' => $tx->invoice_id));
+            $clientService->addFunds($client, $tx->amount, 'Payment with Mollie', array('status' => 'approved', 'invoice' => $tx->invoice_id));
             
             if ($tx->invoice_id) {
                 $invoiceService->payInvoiceWithCredits($invoice);
