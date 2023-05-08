@@ -30,7 +30,7 @@ class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \Box\Inj
     public function __construct(array $config)
     {
         $this->config = $config;
-        $requiredParameters = ['api_key', 'partner_id', 'profile_id'];
+        $requiredParameters = ['api_key'];
 
         foreach ($requiredParameters as $requiredParameter) {
             if (empty($this->config[$requiredParameter])) {
@@ -67,20 +67,6 @@ class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \Box\Inj
                     'text',
                     [
                         'label' => 'API key',
-                        'validators' => ['text'],
-                    ],
-                ],
-                'partner_id' => [
-                    'text',
-                    [
-                        'label' => 'Partner ID',
-                        'validators' => ['text'],
-                    ],
-                ],
-                'profile_id' => [
-                    'text',
-                    [
-                        'label' => 'Profile ID',
                         'validators' => ['text'],
                     ],
                 ],
