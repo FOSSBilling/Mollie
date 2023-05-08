@@ -112,7 +112,7 @@ jobs:
           args: --working-dir=FOSSBilling/src
 
       - name: Install Composer Dependencies (>=0.5.0)
-        if: ${{ hashFiles('FOSSBilling/src/composer.json') }}
+        if: ${{ hashFiles('FOSSBilling/composer.json') }}
         uses: php-actions/composer@v6
         with:
           args: --working-dir=FOSSBilling/
