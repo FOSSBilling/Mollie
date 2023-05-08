@@ -119,12 +119,12 @@ jobs:
           tools: composer
 
       - name: Install Composer Dependencies (<=0.4.x)
-        if: ${{ hashFiles('/FOSSBilling/src/composer.json') }}
+        if: ${{ hashFiles('FOSSBilling/src/composer.json') }}
         run: composer install --no-progress --no-dev --no-interaction
         working-directory: FOSSBilling/src
 
       - name: Install Composer Dependencies (>=0.5.0)
-        if: ${{ hashFiles('/FOSSBilling/composer.json') }}
+        if: ${{ hashFiles('FOSSBilling/composer.json') }}
         run: composer install --no-progress --no-dev --no-interaction
         working-directory: FOSSBilling/
 
