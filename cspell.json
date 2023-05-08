@@ -4,11 +4,16 @@
     "language": "en",
     "words": [
         "FOSSBilling",
-        "Mollie"
+        "Mollie",
+        "phpstan"
     ],
     "ignoreWords": [
         "transid",
         "serie",
-        "opencollective"
+        "opencollective",
+        "shivammathur"
+    ],
+    "ignorePaths": [
+        "phpstan.neon"
     ]
 }

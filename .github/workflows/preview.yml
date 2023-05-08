@@ -1,4 +1,4 @@
-name: Create Downloadable Preview Build
+name: Create a downloadable preview build
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.operating-system }}
-
+    
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
