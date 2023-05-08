@@ -1,5 +1,28 @@
 {
+    "name": "fossbilling/mollie",
+    "description": "Mollie implementation for FOSSBilling",
+    "homepage": "https://extensions.fossbilling.org/extension/mollie",
+    "license": "Apache 2.0",
+    "support": {
+        "issues": "https://github.com/FOSSBilling/mollie/issues",
+        "forum": "https://forum.fossbilling.org",
+        "chat": "https://fossbilling.org/discord"
+    },
+    "funding": [
+        {
+            "type": "opencollective",
+            "url": "https://opencollective.com/fossbilling"
+        },
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/FOSSBilling"
+        }
+    ],
     "require": {
+        "php": ">=8.0",
         "mollie/mollie-api-php": "^2.0"
+    },
+    "config": {
+        "vendor-dir": "./src/vendor"
     }
 }
