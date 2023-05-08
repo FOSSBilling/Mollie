@@ -1,12 +1,12 @@
 <div align="center">
-
-  ![FOSSBilling + Mollie](https://user-images.githubusercontent.com/35808275/236844335-8085c37f-ea5f-4e6a-9712-8c5bea7ebcaf.png)
- 
+  <img src="https://user-images.githubusercontent.com/35808275/236844335-8085c37f-ea5f-4e6a-9712-8c5bea7ebcaf.png" alt="Mollie for FOSSBilling">
   <h1>Mollie for FOSSBilling</h1>
-
 </div>
 
 Quickly and easily integrate [Mollie](https://mollie.com) into your [FOSSBilling](https://fossbilling.org) instance using this extension.
+
+> **Warning**
+> This extension, like FOSSBilling itself is under active development but is currently very much beta software. This means that there may be stability or security issues and it is not yet recommended for use in active production environments!
 
 ## Installation
 ### Extension directory
