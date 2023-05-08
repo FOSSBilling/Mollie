@@ -1,9 +1,4 @@
-Use https://github.com/itsolutions-robin-wolff/Mollie-for-FOSSBilling
-
-Instead
-
-----------
-# Mollie Payment adapter for Fossbilling
+# [WIP] Mollie Payment adapter for FOSSBilling
 
 Before use please test everything is working accordingly!
 
