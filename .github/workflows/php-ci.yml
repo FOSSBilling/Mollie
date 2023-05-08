@@ -88,3 +88,52 @@ jobs:
           php_version: ${{ matrix.php }}
           configuration: phpstan.neon
           memory_limit: 512M
+
+  phpstan-release:
+    runs-on: ubuntu-latest
+    needs: [composer]
+    strategy:
+      matrix:
+        php: [8.2]
+
+    name: PHPStan - FOSSBilling Release
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: build-archive-php${{ matrix.php }}
+          path: /tmp/builds
+
+      - name: Extract build archive
+        run: tar -xvf /tmp/builds/build.tar ./
+
+      - name: Get the Latest FOSSBilling Release Tag
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: "FOSSBilling/FOSSBilling"
+          releases-only: true
+          id: get_id
+
+      - name: Checkout FOSSBilling The Release tag
+        uses: actions/checkout@v3
+        with:
+          repository: "FOSSBilling/FOSSBilling"
+          path: "FOSSBilling"
+          ref: ${{ steps.get_id.outputs.tag }}
+
+      # We manually run composer commands because of this issue: https://github.com/php-actions/composer/issues/100
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer
+
+      - name: Install Composer Dependencies
+        run: composer install --no-progress --no-dev --no-interaction
+        working-directory: FOSSBilling
+
+      - name: Run PHPStan
+        uses: php-actions/phpstan@v3
+        with:
+          php_version: ${{ matrix.php }}
+          configuration: phpstan.neon
+          memory_limit: 512M
