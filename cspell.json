@@ -8,6 +8,7 @@
     ],
     "ignoreWords": [
         "transid",
-        "serie"
+        "serie",
+        "opencollective"
     ]
 }
