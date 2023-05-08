@@ -28,3 +28,6 @@ Not a developer? No problem! You can also help us by [reporting bugs, creating f
 
 ## Licensing
 This extension is licensed under the Apache 2.0 license. See the [LICENSE](LICENSE) file for more information.
+
+## Disclaimer
+This extension is not affiliated with Mollie B.V. in any way. Mollie is a registered trademark of Mollie B.V. The "official" word refers exclusively to the fact that this extension is the only one that is officially supported by the FOSSBilling team. It does not imply any endorsement by Mollie B.V.
