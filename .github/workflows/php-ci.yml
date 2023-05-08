@@ -118,9 +118,15 @@ jobs:
           php-version: latest
           tools: composer
 
-      - name: Install Composer Dependencies
+      - name: Install Composer Dependencies (<=0.4.x)
+        if: ${{ hashFiles('/FOSSBilling/src/composer.json') }}
         run: composer install --no-progress --no-dev --no-interaction
-        working-directory: FOSSBilling
+        working-directory: FOSSBilling/src
+
+      - name: Install Composer Dependencies (>=0.5.0)
+        if: ${{ hashFiles('/FOSSBilling/composer.json') }}
+        run: composer install --no-progress --no-dev --no-interaction
+        working-directory: FOSSBilling/
 
       - name: Run PHPStan
         uses: php-actions/phpstan@v3
