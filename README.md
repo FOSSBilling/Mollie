@@ -14,7 +14,7 @@ The easiest way to install this extension is by using the [FOSSBilling extension
 
 ### Manual installation
 1. Download the latest release from the [extension directory](https://extensions.fossbilling.org/extension/Mollie)
-2. Create a new directory named `Mollie` in the `/library/Payment/Adapter` folder of your FOSSBilling installation
+2. Create a new folder named `Mollie` in the `/library/Payment/Adapter` directory of your FOSSBilling installation
 3. Extract the archive you've downloaded in the first step into the new directory
 4. Go to the "Payment gateways" page in your admin panel (under the "System" menu in the navigation bar) and find Mollie in the "New payment gateway" tab
 5. Click the cog icon next to Mollie to install and configure Mollie
