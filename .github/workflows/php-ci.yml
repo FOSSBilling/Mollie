@@ -65,16 +65,10 @@ jobs:
           repository: "FOSSBilling/FOSSBilling"
           path: "FOSSBilling"
 
-      # We manually run composer commands because of this issue: https://github.com/php-actions/composer/issues/100
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: latest
-          tools: composer
-
       - name: Install Composer Dependencies
-        run: composer install --no-progress --no-dev --no-interaction
-        working-directory: FOSSBilling
+        uses: php-actions/composer@v6
+        with:
+          args: --working-dir=FOSSBilling
 
       - name: Run PHPStan
         uses: php-actions/phpstan@v3
@@ -111,22 +105,17 @@ jobs:
           path: "FOSSBilling"
           ref: ${{ steps.get_id.outputs.tag }}
 
-      # We manually run composer commands because of this issue: https://github.com/php-actions/composer/issues/100
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: latest
-          tools: composer
-
       - name: Install Composer Dependencies (<=0.4.x)
         if: ${{ hashFiles('FOSSBilling/src/composer.json') }}
-        run: composer install --no-progress --no-dev --no-interaction
-        working-directory: FOSSBilling/src
+        uses: php-actions/composer@v6
+        with:
+          args: --working-dir=FOSSBilling/src
 
       - name: Install Composer Dependencies (>=0.5.0)
-        if: ${{ hashFiles('FOSSBilling/composer.json') }}
-        run: composer install --no-progress --no-dev --no-interaction
-        working-directory: FOSSBilling/
+        if: ${{ hashFiles('FOSSBilling/src/composer.json') }}
+        uses: php-actions/composer@v6
+        with:
+          args: --working-dir=FOSSBilling/
 
       - name: Run PHPStan
         uses: php-actions/phpstan@v3
