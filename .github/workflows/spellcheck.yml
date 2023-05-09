@@ -1,7 +1,8 @@
 name: Spellcheck
 on:
   pull_request:
-  push:
+  push: 
+    branches: [main]
 
 permissions:
   contents: read

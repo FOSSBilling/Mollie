@@ -11,7 +11,8 @@
         "transid",
         "serie",
         "opencollective",
-        "shivammathur"
+        "shivammathur",
+        "oprypin"
     ],
     "ignorePaths": [
         "phpstan.neon"
