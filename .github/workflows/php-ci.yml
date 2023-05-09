@@ -67,6 +67,7 @@ jobs:
         uses: php-actions/composer@v6
         with:
           args: --working-dir=FOSSBilling
+          dev: no
 
       - name: Run PHPStan
         uses: php-actions/phpstan@v3
@@ -108,12 +109,14 @@ jobs:
         uses: php-actions/composer@v6
         with:
           args: --working-dir=FOSSBilling/src
+          dev: no
 
       - name: Install Composer Dependencies (>=0.5.0)
         if: ${{ hashFiles('FOSSBilling/composer.json') }}
         uses: php-actions/composer@v6
         with:
           args: --working-dir=FOSSBilling/
+          dev: no
 
       - name: Run PHPStan
         uses: php-actions/phpstan@v3
