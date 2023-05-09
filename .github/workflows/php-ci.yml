@@ -60,7 +60,7 @@ jobs:
         run: tar -xvf /tmp/builds/build.tar ./
 
       - name: Checkout FOSSBilling Source Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: "FOSSBilling/FOSSBilling"
           path: "FOSSBilling"
