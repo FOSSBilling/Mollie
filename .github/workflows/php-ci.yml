@@ -31,8 +31,6 @@ jobs:
       - name: Install Composer Dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         uses: php-actions/composer@v6
-        with:
-          php_version: latest
 
       - name: Create Build Archive for Tests
         run: |
@@ -98,7 +96,7 @@ jobs:
           releases-only: true
         id: get_id
 
-      - name: Checkout FOSSBilling The Release tag
+      - name: Checkout The Release tag
         uses: actions/checkout@v3
         with:
           repository: "FOSSBilling/FOSSBilling"
