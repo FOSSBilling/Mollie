@@ -30,11 +30,11 @@ class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \Box\Inj
     public function __construct(array $config)
     {
         $this->config = $config;
-        $requiredParameters = ['api_key'];
+        $requiredParameters = ['api_key' => 'API Key'];
 
-        foreach ($requiredParameters as $requiredParameter) {
+        foreach ($requiredParameters as $requiredParameter=> $name) {
             if (empty($this->config[$requiredParameter])) {
-                throw new Payment_Exception('Payment gateway "Mollie" is not configured properly. Please update the configuration parameter :param at "Configuration -> Payments".', [':param' => $requiredParameter]);
+                throw new Payment_Exception('The ":pay_gateway" payment gateway is not fully configured. Please configure the :missing', [':pay_gateway' => 'Mollie', ':missing' => $name]);
             }
         }
 
