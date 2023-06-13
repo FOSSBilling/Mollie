@@ -11,7 +11,7 @@ require_once __DIR__ . "/vendor/autoload.php";
 
 use \Mollie\Api\MollieApiClient;
 
-class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \Box\InjectionAwareInterface
+class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \FOSSBilling\InjectionAwareInterface
 {
     protected array $config = [];
     protected MollieApiClient $mollie;
