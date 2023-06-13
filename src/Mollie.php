@@ -17,18 +17,12 @@ class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \FOSSBil
     protected MollieApiClient $mollie;
     protected $di;
 
-    /**
-     * @param \Pimple\Container|null $di
-     */
-    public function setDi($di)
+    public function setDi(\Pimple\Container|null $di): void
     {
         $this->di = $di;
     }
 
-    /**
-     * @return \Pimple\Container|null
-     */
-    public function getDi()
+    public function getDi(): ?\Pimple\Container
     {
         return $this->di;
     }
