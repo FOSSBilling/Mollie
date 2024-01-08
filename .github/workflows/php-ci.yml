@@ -37,7 +37,7 @@ jobs:
           mkdir /tmp/builds/ && tar -cvf /tmp/builds/build.tar ./
 
       - name: Upload Build Archive for Tests
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-archive-php
           path: /tmp/builds
@@ -49,7 +49,7 @@ jobs:
 
     name: PHPStan - FOSSBilling Preview
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: build-archive-php
           path: /tmp/builds
@@ -82,7 +82,7 @@ jobs:
 
     name: PHPStan - FOSSBilling Release
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: build-archive-php
           path: /tmp/builds
