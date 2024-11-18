@@ -100,7 +100,7 @@ class Payment_Adapter_Mollie extends Payment_AdapterAbstract implements \FOSSBil
         $service = $this->di['mod_service']('invoice', 'transaction');
 
         // create a new transaction so we can reuse the payment ID in the next step
-        $output = $service->create(array('txn_id' => $payment->id, 'invoice_id' => $invoice->id, 'gateway_id' => $payGateway->id));`
+        $output = $service->create(array('txn_id' => $payment->id, 'invoice_id' => $invoice->id, 'gateway_id' => $payGateway->id));
 
         // We still need to update the unique ID
         $tx = $this->di['db']->getExistingModelById('Transaction', $output);
