@@ -18,8 +18,6 @@ jobs:
         uses: php-actions/composer@v6
         with:
           command: validate
-          php_extensions: intl
-          php_version: 8.1
 
       - name: Cache Composer Dependencies
         id: composer-cache
@@ -33,9 +31,6 @@ jobs:
       - name: Install Composer Dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         uses: php-actions/composer@v6
-        with:
-          php_extensions: intl
-          php_version: 8.1
 
       - name: Create Build Archive for Tests
         run: |
