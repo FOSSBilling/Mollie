@@ -31,6 +31,8 @@ jobs:
       - name: Install Composer Dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         uses: php-actions/composer@v6
+        with:
+          php_extensions: intl
 
       - name: Create Build Archive for Tests
         run: |
@@ -68,6 +70,7 @@ jobs:
         with:
           args: --working-dir=FOSSBilling
           dev: no
+          php_extensions: intl
 
       - name: Run PHPStan
         uses: php-actions/phpstan@v3
@@ -109,6 +112,7 @@ jobs:
         with:
           args: --working-dir=FOSSBilling/
           dev: no
+          php_extensions: intl
 
       - name: Run PHPStan
         uses: php-actions/phpstan@v3
