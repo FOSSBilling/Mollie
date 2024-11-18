@@ -33,6 +33,7 @@ jobs:
         uses: php-actions/composer@v6
         with:
           php_extensions: intl
+          php_version: 8.1
 
       - name: Create Build Archive for Tests
         run: |
@@ -78,6 +79,7 @@ jobs:
           php_version: latest
           configuration: phpstan.neon
           memory_limit: 512M
+          version: composer
 
   phpstan-release:
     runs-on: ubuntu-latest
