@@ -76,7 +76,7 @@ jobs:
           php_version: latest
           configuration: phpstan.neon
           memory_limit: 512M
-          version: composer
+          version: latest
 
   phpstan-release:
     runs-on: ubuntu-latest
@@ -119,4 +119,4 @@ jobs:
           php_version: latest
           configuration: phpstan.neon
           memory_limit: 512M
-          version: composer
+          version: latest
