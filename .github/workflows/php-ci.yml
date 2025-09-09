@@ -12,7 +12,7 @@ jobs:
 
     name: PHP (Latest) - Build and Archive
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Validate composer.json and composer.lock
         uses: php-actions/composer@v6
@@ -58,7 +58,7 @@ jobs:
         run: tar -xvf /tmp/builds/build.tar ./
 
       - name: Checkout FOSSBilling Source Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: "FOSSBilling/FOSSBilling"
           path: "FOSSBilling"
@@ -100,7 +100,7 @@ jobs:
         id: get_id
 
       - name: Checkout The Release tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: "FOSSBilling/FOSSBilling"
           path: "FOSSBilling"
