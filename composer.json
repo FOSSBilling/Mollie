@@ -20,7 +20,7 @@
     ],
     "require": {
         "php": ">=8.1",
-        "mollie/mollie-api-php": "^2.0"
+        "mollie/mollie-api-php": "^3.5"
     },
     "config": {
         "vendor-dir": "./src/vendor",
