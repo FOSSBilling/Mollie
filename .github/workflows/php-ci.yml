@@ -31,6 +31,8 @@ jobs:
       - name: Install Composer Dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         uses: php-actions/composer@v6
+        with:
+          php_version: 8.2
 
       - name: Create Build Archive for Tests
         run: |
@@ -68,6 +70,7 @@ jobs:
         with:
           args: --working-dir=FOSSBilling
           dev: no
+          php_version: 8.2
           php_extensions: intl
 
       - name: Run PHPStan
