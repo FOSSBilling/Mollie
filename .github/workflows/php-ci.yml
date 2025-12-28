@@ -114,6 +114,7 @@ jobs:
         with:
           args: --working-dir=FOSSBilling/
           dev: no
+          php_version: 8.2
           php_extensions: intl
 
       - name: Run PHPStan
