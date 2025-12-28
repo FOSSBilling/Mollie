@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "mollie/mollie-api-php": "^2.0"
     },
     "config": {
