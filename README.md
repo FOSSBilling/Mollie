@@ -1,3 +1,6 @@
+> **Warning**:
+This repository has been archived and is no longer maintained. For information about community maintained FOSSBilling extensions check the [extensions
+
 <div align="center">
   <img src="https://user-images.githubusercontent.com/35808275/236844335-8085c37f-ea5f-4e6a-9712-8c5bea7ebcaf.png" alt="Mollie for FOSSBilling">
   <h1>Mollie for FOSSBilling</h1>
